@@ -1,3 +1,9 @@
+const searchInput = document.querySelector(".search");
+const selectedValue = document.getElementById("selectByCategory");
+const studentList = document.querySelector(".students-list");
+const students = {
+  alldata: [],
+};
 const featchingData = async function (url) {
   try {
     const response = await fetch(url);
@@ -24,21 +30,22 @@ const getStudents = async function () {
     );
     totalStudentsDesc.push(dataFromId);
   }
-  const arrOfDes = await Promise.all(totalStudentsDesc);
-  console.log(arrOfDes);
+  students.alldata = await Promise.all(totalStudentsDesc);
 
-  creatingAtable(arrOfDes);
+  creatingATable(students.alldata);
   //   console.log(sortBy("firstName", arrOfDes));
   //   console.log(filterBy("מירי", arrOfDes));
 };
 
-const filterBy = function (property, arr) {
-  const resault = arr.filter((student) => student.property === property);
-  return resault;
+const filterBy = function (property) {
+  if (property === "") return students.alldata;
+  return students.alldata.filter((student) =>
+    `${student[selectedValue.value]}`.includes(property)
+  );
 };
 
-const sortBy = function (category, arr) {
-  const newArrByCatagory = arr.map((m) => {
+const sortBy = function (category) {
+  const newArrByCatagory = students.alldata.map((m) => {
     return m[category];
   });
 
@@ -60,14 +67,20 @@ const drawAStudentData = function (student) {
   <button>confirm</button>
 </form>
     `;
-  const studentList = document.querySelector(".students-list");
   studentList.innerHTML += studentForm;
 };
 
-const creatingAtable = function (arr) {
-  arr.forEach((student) => {
+const creatingATable = function () {
+  const arrayfilterd = filterBy(searchInput.value);
+  studentList.innerHTML = "";
+  arrayfilterd.forEach((student) => {
     drawAStudentData(student);
   });
 };
 
+const actions = function (value) {
+  searchInput.addEventListener("keyup", creatingATable);
+};
+
 getStudents();
+actions(searchInput.value);
