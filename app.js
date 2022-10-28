@@ -1,9 +1,13 @@
 const searchInput = document.querySelector(".search");
 const selectedValue = document.getElementById("selectByCategory");
 const studentList = document.querySelector(".students-list");
+const controlForm = document.querySelector(".control-form");
 const students = {
   alldata: [],
+  selectedSorting: "id",
+  numericCategores: ["id", "Capsule", "age"],
 };
+
 const featchingData = async function (url) {
   try {
     const response = await fetch(url);
@@ -12,6 +16,13 @@ const featchingData = async function (url) {
   } catch (e) {
     console.log(`ERROR -> ${e}`);
   }
+};
+
+const actions = function (value) {
+  searchInput.addEventListener("keyup", creatingATable);
+  [...controlForm.children].forEach((m) => {
+    m.addEventListener("click", creatingATable);
+  });
 };
 
 const getStudents = async function () {
@@ -32,24 +43,15 @@ const getStudents = async function () {
   }
   students.alldata = await Promise.all(totalStudentsDesc);
 
-  creatingATable(students.alldata);
-  //   console.log(sortBy("firstName", arrOfDes));
-  //   console.log(filterBy("מירי", arrOfDes));
+  creatingATable();
+  actions(searchInput.value);
 };
 
-const filterBy = function (property) {
-  if (property === "") return students.alldata;
-  return students.alldata.filter((student) =>
+const filterBy = function (property, sortedData) {
+  if (property === "") return sortedData;
+  return sortedData.filter((student) =>
     `${student[selectedValue.value]}`.includes(property)
   );
-};
-
-const sortBy = function (category) {
-  const newArrByCatagory = students.alldata.map((m) => {
-    return m[category];
-  });
-
-  return newArrByCatagory.sort();
 };
 
 const drawAStudentData = function (student) {
@@ -69,46 +71,43 @@ const drawAStudentData = function (student) {
 `;
   studentList.innerHTML += studentForm;
 };
-const sortEvent = function (e) {
-  console.log(e.textContent);
-};
-const creatingTitles = function () {
-  const head = `
-  <form class="control-form" action="">
-  <label class='head id' for="">Id</label>
-  <label class='head firstName-head'  type="text" >firstName <span><i class="fa-solid fa-sort"></i></span></label>
-  <label class='head lastName-head'  type="text" >lastName <span><i class="fa-solid fa-sort"></i></span></label>
-  <label class='head capsuleName-head'  type="text" >Capsule <span><i class="fa-solid fa-sort"></i></span></label>
-  <label class='head ageName-head'  type="text" >Age <span><i class="fa-solid fa-sort"></i></span></label>
-  <label class='head cityName-head'  type="text" >City <span><i class="fa-solid fa-sort"></i></span></label>
-  <label class='head genderName-head'  type="text" >Gender <span><i class="fa-solid fa-sort"></i></span></label>
-  <label class='head hobbyName-head'  type="text" >Hobby <span><i class="fa-solid fa-sort"></i></span></label>
-  <button class='btn-head edit-btn'></button>
-  <button class='btn-head remove-btn'></button>
-</form>
-    `;
-  studentList.innerHTML = head;
-  const headers = document.querySelectorAll(".head");
-  console.log(headers);
-  for (let head of headers) {
-    head.addEventListener("click", function (e) {
-      console.log(e.textContent);
-    });
-  }
+
+const sortNumbers = function () {
+  return students.alldata.sort(
+    (a, b) => a[students.selectedSorting] - b[students.selectedSorting]
+  );
 };
 
-const creatingATable = function () {
+const sortStrings = function () {
+  students.alldata.sort((a, b) => {
+    const nameA = a[students.selectedSorting];
+    const nameB = b[students.selectedSorting];
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0; // if equal
+  });
+};
+
+const creatingATable = function (e) {
+  if (e) {
+    students.selectedSorting = e.target.textContent;
+  }
+  if (students.numericCategores.includes(students.selectedSorting)) {
+    sortNumbers();
+  } else {
+    sortStrings();
+  }
   studentList.innerHTML = "";
-  creatingTitles();
-  const arrayfilterd = filterBy(searchInput.value);
+
+  const arrayfilterd = filterBy(searchInput.value, students.alldata);
+
   arrayfilterd.forEach((student) => {
     drawAStudentData(student);
   });
 };
 
-const actions = function (value) {
-  searchInput.addEventListener("keyup", creatingATable);
-};
-
 getStudents();
-actions(searchInput.value);
