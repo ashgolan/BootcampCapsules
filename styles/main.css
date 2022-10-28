@@ -6,22 +6,29 @@
   box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+body {
+  background-image: url("/img/background1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .big-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 2%;
 }
 .controling {
   display: flex;
   justify-content: space-between;
-  width: 50%;
-  /* background-color: rgb(170, 89, 89); */
+  width: 70%;
   padding: 1%;
 }
 .restart,
 .category {
   width: 20%;
 }
+
 .restart {
   background-color: rgb(58, 60, 61);
   color: rgb(252, 236, 236);
@@ -31,10 +38,14 @@
 .search {
   padding: 1%;
 }
-.logo {
+.logo,
+.signature {
   align-items: center;
   font-family: "Metal Mania", cursive;
   font-size: 2rem;
+}
+.signature {
+  font-size: 1rem;
 }
 .students-list,
 .students-head {
@@ -42,14 +53,16 @@
   display: flex;
   flex-direction: column;
 }
+
 .form,
-.control-form {
+.head-form {
   display: flex;
   justify-content: space-between;
   width: 100%;
   padding: 0.5%;
-  /* background-color: rgb(223, 142, 142); */
-  /* color: white; */
+}
+.head-form {
+  justify-content: flex-start;
 }
 
 .head,
@@ -62,11 +75,12 @@
 .city,
 .hobby {
   width: 120px;
-  padding: 0.4%;
+  padding: 0.8% 0.5%;
   background-color: rgb(58, 60, 61);
   color: rgb(252, 236, 236);
   border: none;
 }
+
 .edit-btn,
 .remove-btn {
   width: 80px;
@@ -85,10 +99,20 @@ input:disabled {
   background-color: rgb(58, 60, 61);
   color: orange;
   cursor: pointer;
+  position: relative;
+  margin-right: 0.2%;
 }
 .head i {
   color: white;
 }
 .btn-head {
   visibility: hidden;
+}
+.head span {
+  position: absolute;
+  left: 80%;
+}
+.id span {
+  position: absolute;
+  left: 60%;
 }

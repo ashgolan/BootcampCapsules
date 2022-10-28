@@ -1,11 +1,13 @@
 const searchInput = document.querySelector(".search");
 const selectedValue = document.getElementById("selectByCategory");
 const studentList = document.querySelector(".students-list");
-const controlForm = document.querySelector(".control-form");
+const headForm = document.querySelector(".head-form");
+
 const students = {
   alldata: [],
   selectedSorting: "id",
   numericCategores: ["id", "Capsule", "age"],
+  form: [],
 };
 
 const featchingData = async function (url) {
@@ -20,8 +22,17 @@ const featchingData = async function (url) {
 
 const actions = function (value) {
   searchInput.addEventListener("keyup", creatingATable);
-  [...controlForm.children].forEach((m) => {
+
+  [...headForm.children].forEach((m) => {
     m.addEventListener("click", creatingATable);
+  });
+  students.form.forEach((allforms) => {
+    allforms.forEach((form) => {
+      form.addEventListener("click", (element) => {
+        console.log(form.getAttribute("id"));
+        console.log(element);
+      });
+    });
   });
 };
 
@@ -56,7 +67,7 @@ const filterBy = function (property, sortedData) {
 
 const drawAStudentData = function (student) {
   const studentForm = `
-  <form class='form' id="${student.id}" action="">
+  <div class='form' id="${student.id}">
   <label class='id' for="">${student.id}</label>
   <input class='firstName' disabled type="text" value="${student.firstName}">
   <input class='lastName' disabled type="text" value="${student.lastName}">
@@ -67,9 +78,17 @@ const drawAStudentData = function (student) {
   <input class='hobby' disabled type="text" value="${student.hobby}">
   <button class='edit-btn'>Edit</button>
   <button class='remove-btn'>Delete</button>
-</form>
+</div>
 `;
   studentList.innerHTML += studentForm;
+  //   const form = document.querySelector(".form");
+  //   form.addEventListener("click", (e) => {
+  //     e.preventDefault();
+  //   });
+  //   const deleteStudent = document.querySelector(".remove-btn");
+  //   deleteStudent.addEventListener("click", (e) => {
+  //     console.log(e);
+  //   });
 };
 
 const sortNumbers = function () {
@@ -108,6 +127,8 @@ const creatingATable = function (e) {
   arrayfilterd.forEach((student) => {
     drawAStudentData(student);
   });
+  students.form.push(document.querySelectorAll(".form"));
+  console.log(students.form);
 };
 
 getStudents();

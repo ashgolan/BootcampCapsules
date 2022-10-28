@@ -16,8 +16,10 @@
   <body>
     <div class="big-container">
       <div class="controling">
-        <label class="logo" for="">MY CAPSULE</label>
-        <input class="search" value="" />
+        <label class="logo" for=""
+          >MY CAPSULE <span class="signature">By Alaa Shaalan</span></label
+        >
+        <input class="search" value="" placeholder="Search ..." />
         <select class="category" name="selectByCategory" id="selectByCategory">
           <option value="firstName">firstName</option>
           <option value="lastName">lastName</option>
@@ -30,8 +32,10 @@
         <button class="restart">Restart</button>
       </div>
       <div class="students-head">
-        <form class="control-form" action="">
-          <label class="head id" for="">id</label>
+        <div class="head-form">
+          <label class="head id" for=""
+            >id<span><i class="fa-solid fa-sort"></i></span
+          ></label>
           <label class="head firstName-head" id="firstName-head" type="text"
             >firstName<span><i class="fa-solid fa-sort"></i></span
           ></label>
@@ -53,9 +57,7 @@
           <label class="head hobbyName-head" type="text"
             >hobby<span><i class="fa-solid fa-sort"></i></span
           ></label>
-          <button class="btn-head edit-btn"></button>
-          <button class="btn-head remove-btn"></button>
-        </form>
+        </div>
       </div>
       <div class="students-list"></div>
     </div>
