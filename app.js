@@ -54,25 +54,53 @@ const sortBy = function (category) {
 
 const drawAStudentData = function (student) {
   const studentForm = `
-  <form action="">
-  <label for="">${student.id}</label>
-  <input disabled type="text" value="${student.firstName}">
-  <input disabled type="text" value="${student.lastName}">
-  <input disabled type="text" value="${student.capsule}">
-  <input disabled type="text" value="${student.age}">
-  <input disabled type="text" value="${student.city}">
-  <input disabled type="text" value="${student.gender}">
-  <input disabled type="text" value="${student.hobby}">
-  <button>edit</button>
-  <button>confirm</button>
+  <form class='form' id="${student.id}" action="">
+  <label class='id' for="">${student.id}</label>
+  <input class='firstName' disabled type="text" value="${student.firstName}">
+  <input class='lastName' disabled type="text" value="${student.lastName}">
+  <input class='capsule' disabled type="text" value="${student.capsule}">
+  <input class='age' disabled type="text" value="${student.age}">
+  <input class='city' disabled type="text" value="${student.city}">
+  <input class='gender' disabled type="text" value="${student.gender}">
+  <input class='hobby' disabled type="text" value="${student.hobby}">
+  <button class='edit-btn'>Edit</button>
+  <button class='remove-btn'>Delete</button>
+</form>
+`;
+  studentList.innerHTML += studentForm;
+};
+const sortEvent = function (e) {
+  console.log(e.textContent);
+};
+const creatingTitles = function () {
+  const head = `
+  <form class="control-form" action="">
+  <label class='head id' for="">Id</label>
+  <label class='head firstName-head'  type="text" >firstName <span><i class="fa-solid fa-sort"></i></span></label>
+  <label class='head lastName-head'  type="text" >lastName <span><i class="fa-solid fa-sort"></i></span></label>
+  <label class='head capsuleName-head'  type="text" >Capsule <span><i class="fa-solid fa-sort"></i></span></label>
+  <label class='head ageName-head'  type="text" >Age <span><i class="fa-solid fa-sort"></i></span></label>
+  <label class='head cityName-head'  type="text" >City <span><i class="fa-solid fa-sort"></i></span></label>
+  <label class='head genderName-head'  type="text" >Gender <span><i class="fa-solid fa-sort"></i></span></label>
+  <label class='head hobbyName-head'  type="text" >Hobby <span><i class="fa-solid fa-sort"></i></span></label>
+  <button class='btn-head edit-btn'></button>
+  <button class='btn-head remove-btn'></button>
 </form>
     `;
-  studentList.innerHTML += studentForm;
+  studentList.innerHTML = head;
+  const headers = document.querySelectorAll(".head");
+  console.log(headers);
+  for (let head of headers) {
+    head.addEventListener("click", function (e) {
+      console.log(e.textContent);
+    });
+  }
 };
 
 const creatingATable = function () {
-  const arrayfilterd = filterBy(searchInput.value);
   studentList.innerHTML = "";
+  creatingTitles();
+  const arrayfilterd = filterBy(searchInput.value);
   arrayfilterd.forEach((student) => {
     drawAStudentData(student);
   });

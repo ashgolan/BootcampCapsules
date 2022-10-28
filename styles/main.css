@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap");
+
 * {
   padding: 0;
   margin: 0;
@@ -11,21 +13,36 @@
 }
 .controling {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 50%;
   /* background-color: rgb(170, 89, 89); */
   padding: 1%;
 }
-.title {
-  width: 100px;
+.restart,
+.category {
+  width: 20%;
+}
+.restart {
+  background-color: rgb(58, 60, 61);
+  color: rgb(252, 236, 236);
+  font-weight: bold;
+  color: gold;
+}
+.search {
+  padding: 1%;
+}
+.logo {
   align-items: center;
+  font-family: "Metal Mania", cursive;
+  font-size: 2rem;
 }
 .students-list {
   width: 80%;
   display: flex;
   flex-direction: column;
 }
-form {
+.form,
+.control-form {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -33,27 +50,43 @@ form {
   /* background-color: rgb(223, 142, 142); */
   /* color: white; */
 }
-label,
-input,
-button,
-select {
-  padding: 0.4%;
-  border: none;
-  background-color: rgb(226, 140, 140);
-  /* flex: 1 1 10%; */
-}
-label {
-  width: 50px;
-}
-input {
+.head,
+.id,
+.firstName,
+.lastName,
+.capsule,
+.age,
+.gender,
+.city,
+.hobby {
   width: 120px;
+  padding: 0.4%;
+  background-color: rgb(58, 60, 61);
+  color: rgb(252, 236, 236);
+  border: none;
 }
-input:disabled {
-  color: rgb(0, 0, 0);
-}
-
-button {
+.edit-btn,
+.remove-btn {
   width: 80px;
   background-color: rgb(255, 180, 40);
   border-radius: 5px;
+  border: none;
+}
+
+.id {
+  width: 50px;
+}
+input:disabled {
+  color: rgb(252, 236, 236);
+}
+.head {
+  background-color: rgb(58, 60, 61);
+  color: orange;
+  cursor: pointer;
+}
+.head i {
+  color: white;
+}
+.btn-head {
+  visibility: hidden;
 }

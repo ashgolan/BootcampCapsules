@@ -8,13 +8,17 @@
     <link rel="stylesheet" href="/styles/normalize.css" />
     <link rel="stylesheet" href="/styles/mobile.css" />
     <link rel="stylesheet" href="/styles/main.css" />
+    <script
+      src="https://kit.fontawesome.com/4618f63ecb.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <div class="big-container">
       <div class="controling">
-        <label class="title" for="">MY CAPSULE</label>
+        <label class="logo" for="">MY CAPSULE</label>
         <input class="search" value="" />
-        <select name="selectByCategory" id="selectByCategory">
+        <select class="category" name="selectByCategory" id="selectByCategory">
           <option value="firstName">firstName</option>
           <option value="lastName">lastName</option>
           <option value="capsule">Capsule</option>
@@ -23,7 +27,7 @@
           <option value="Gender">Gender</option>
           <option value="Hobby">Hobby</option>
         </select>
-        <button>Restart</button>
+        <button class="restart">Restart</button>
       </div>
       <div class="students-list"></div>
     </div>
