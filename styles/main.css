@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@700&family=Metal+Mania&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@700&family=Metal+Mania&family=Sail&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barrio&family=Fira+Code:wght@700&family=Metal+Mania&family=Sail&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barrio&family=Ewert&family=Fira+Code:wght@700&family=Metal+Mania&family=Sail&display=swap");
 * {
   padding: 0;
   margin: 0;
@@ -19,7 +22,7 @@ body {
   cursor: pointer;
 }
 .confirm {
-  background-color: rgb(20, 145, 20) !important;
+  background-color: rgb(4, 131, 4) !important;
 }
 .cancel {
   background-color: rgb(110, 106, 48) !important;
@@ -41,6 +44,7 @@ body {
   width: 70%;
   padding: 1%;
   border-bottom: 5px orange solid;
+  flex-wrap: wrap;
 }
 
 .search {
@@ -49,15 +53,16 @@ body {
 .logo,
 .signature {
   align-items: center;
-  flex-shrink: 0;
-  font-family: "Fira Code", monospace;
-  font-size: 1.5rem;
+  flex-shrink: 2;
+  font-family: "Ewert", cursive;
+  font-size: 2rem;
   height: 40px;
   line-height: 40px;
 }
 .signature {
-  font-size: 0.8rem;
+  font-size: 1.2rem;
   color: rgb(82, 87, 9);
+  font-family: "Sail", cursive;
 }
 .students-list,
 .students-head {
@@ -88,7 +93,7 @@ body {
 .hobby,
 .category,
 .restart {
-  width: 11.3%;
+  width: 11.4%;
   padding: 0.8% 0.5%;
   background-color: rgb(58, 60, 61);
   color: rgb(252, 236, 236);
@@ -100,22 +105,47 @@ body {
 .category {
   width: 15%;
   background-color: rgb(58, 60, 61);
-  color: rgb(252, 236, 236);
   font-weight: bold;
-  color: gold;
+  color: orange;
   cursor: pointer;
   border-radius: 5px;
+}
+.restart {
+  color: gold;
+}
+.restart:hover {
+  color: white;
 }
 
 .edit-btn,
 .remove-btn {
-  width: 80px;
-  background-color: rgb(255, 180, 40);
-  border-radius: 5px;
+  width: 7%;
+  background-color: rgb(16, 179, 43);
   border: none;
   cursor: pointer;
+  font-size: 100%;
+  border-radius: 5px;
+  color: white;
+}
+.edit-btn:hover,
+.remove-btn:hover {
+  color: gold;
+}
+.remove-btn {
+  background-color: rgb(189, 33, 33);
 }
 
+.head {
+  background-color: rgb(58, 60, 61);
+  color: orange;
+  cursor: pointer;
+  position: relative;
+  margin-right: 0.1%;
+  width: 11.45%;
+}
+.head:hover {
+  color: white;
+}
 .id {
   flex-shrink: 1;
   width: 5%;
@@ -123,22 +153,16 @@ body {
 input:disabled {
   color: rgb(252, 236, 236);
 }
-.head {
-  background-color: rgb(58, 60, 61);
-  color: orange;
-  cursor: pointer;
-  position: relative;
-  margin-right: 0.1%;
-}
-.head i {
-  color: white;
-}
 
-.head span {
+i {
   position: absolute;
   left: 80%;
+  color: white;
 }
-.id span {
+i:hover {
+  color: gold;
+}
+.id i {
   position: absolute;
   left: 60%;
 }

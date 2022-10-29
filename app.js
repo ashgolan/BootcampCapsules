@@ -4,6 +4,8 @@ const studentList = document.querySelector(".students-list");
 const headForm = document.querySelector(".head-form");
 const restart = document.querySelector(".restart");
 const spinner = document.querySelector(".lds-roller");
+const sortingByIcon = document.querySelectorAll("i");
+
 const students = {
   alldata: [],
   selectedSorting: "id",
@@ -80,46 +82,47 @@ const resetObj = function (siblings) {
 };
 
 const addCancelAndConfirmButtons = function (element) {
-  element.target.innerHTML = "Cancel";
+  element.target.textContent = "Cancel";
   element.target.classList.add("cancel");
 
-  element.target.nextElementSibling.innerHTML = "Confirm";
+  element.target.nextElementSibling.textContent = "Confirm";
   element.target.nextElementSibling.classList.add("confirm");
 };
 const removeCancelAndConfirmButtons = function (element) {
-  element.target.innerHTML = "Edit";
+  element.target.textContent = "Edit";
   element.target.classList.remove("cancel");
 
-  element.target.nextElementSibling.innerHTML = "Delete";
+  element.target.nextElementSibling.textContent = "Delete";
   element.target.nextElementSibling.classList.remove("confirm");
 };
 const removeCancelAndConfirmButtonsbyConfirm = function (element) {
-  element.target.previousElementSibling.innerHTML = "Edit";
+  element.target.previousElementSibling.textContent = "Edit";
   element.target.previousElementSibling.classList.remove("cancel");
 
-  element.target.innerHTML = "Delete";
+  element.target.textContent = "Delete";
   element.target.classList.remove("confirm");
 };
 
 const clickOnForm = function (element) {
   const siblings = element.target.parentElement.children;
-  if (element.target.innerHTML === "Edit" && !students.editPressed) {
+  console.log(element.target.textContent);
+  if (element.target.textContent === "Edit" && !students.editPressed) {
     resetObj(siblings);
     students.editPressed = true;
     addCancelAndConfirmButtons(element);
 
     toggleLockInputs(siblings, false);
-  } else if (element.target.innerHTML === "Cancel") {
+  } else if (element.target.textContent === "Cancel") {
     students.editPressed = false;
     removeCancelAndConfirmButtons(element);
 
     toggleLockInputs(siblings, true);
     resetStudentData(siblings, students.toResetObj);
-  } else if (element.target.innerHTML === "Confirm") {
+  } else if (element.target.textContent === "Confirm") {
     updateData(element.target.parentElement);
     removeCancelAndConfirmButtonsbyConfirm(element);
     students.editPressed = false;
-  } else if (element.target.innerHTML === "Delete") {
+  } else if (element.target.textContent === "Delete") {
     deleteData(element);
   }
 };
@@ -131,7 +134,9 @@ const reset = function () {
 
 const actions = function (value) {
   searchInput.addEventListener("keyup", creatingATable);
-
+  sortingByIcon.forEach((e) => {
+    e.addEventListener("click", creatingATable);
+  });
   restart.addEventListener("click", reset);
 
   [...headForm.children].forEach((m) => {
@@ -170,7 +175,11 @@ const getStudents = async function () {
 const filterBy = function (property, sortedData) {
   if (property === "") return sortedData;
   return sortedData.filter((student) =>
-    `${student[selectedValue.value]}`.includes(property)
+    `${
+      selectedValue.value === "Search by"
+        ? student["firstName"]
+        : student[selectedValue.value]
+    }`.includes(property)
   );
 };
 
@@ -222,7 +231,9 @@ const creatingATable = function (e) {
   hideSpinner(students.isLoading);
   students.form = [];
   if (e) {
-    students.selectedSorting = e.target.textContent;
+    if (e.target.textContent !== "")
+      students.selectedSorting = e.target.textContent;
+    else students.selectedSorting = e.target.parentElement.textContent;
   }
   if (students.numericCategores.includes(students.selectedSorting)) {
     sortNumbers();

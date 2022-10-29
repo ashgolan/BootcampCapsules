@@ -1,0 +1,99 @@
+@media screen and (min-width: 400px) and (max-width: 800px) {
+  .head,
+  .id,
+  .firstName,
+  .lastName,
+  .capsule,
+  .age,
+  .gender,
+  .city,
+  .hobby,
+  .category,
+  .restart,
+  .edit-btn,
+  .remove-btn {
+    width: 1.4%;
+    padding: 0.8% 0.5%;
+    background-color: rgb(58, 60, 61);
+    color: rgb(252, 236, 236);
+    border: none;
+    font-size: 50% !important;
+  }
+
+  .search,
+  .category {
+    flex: 1 1 20%;
+    margin: 1%;
+  }
+  .logo {
+    order: -2;
+    margin: 1%;
+    font-size: 1.4rem !important;
+  }
+  .signature {
+    order: -2;
+    font-size: 0.8rem !important;
+  }
+
+  .restart {
+    order: 0;
+    flex: 1 1 100%;
+    margin: 1%;
+  }
+  .fa-solid,
+  .fas {
+    display: none;
+  }
+}
+@media screen and (max-width: 1110px) {
+  .fa-solid,
+  .fas {
+    display: none;
+  }
+}
+@media screen and (max-width: 400px) {
+  .head,
+  .id,
+  .firstName,
+  .lastName,
+  .capsule,
+  .age,
+  .gender,
+  .city,
+  .hobby,
+  .category,
+  .restart,
+  .edit-btn,
+  .remove-btn {
+    width: 1.4%;
+    padding: 0.8% 0.5%;
+    background-color: rgb(58, 60, 61);
+    color: rgb(252, 236, 236);
+    border: none;
+    font-size: 20% !important;
+  }
+
+  .search,
+  .category {
+    flex: 1 1 20%;
+    margin: 1%;
+  }
+  .logo {
+    order: -2;
+    margin: 1%;
+    font-size: 1.2rem !important;
+  }
+  .signature {
+    order: -2;
+    font-size: 0.7rem !important;
+  }
+  .restart {
+    order: 0;
+    flex: 1 1 100%;
+    margin: 1%;
+  }
+  .fa-solid,
+  .fas {
+    display: none;
+  }
+}
