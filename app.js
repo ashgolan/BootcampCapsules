@@ -2,7 +2,6 @@ const searchInput = document.querySelector(".search");
 const selectedValue = document.getElementById("selectByCategory");
 const studentList = document.querySelector(".students-list");
 const headForm = document.querySelector(".head-form");
-const restart = document.querySelector(".restart");
 const spinner = document.querySelector(".lds-roller");
 const sortingByIcon = document.querySelectorAll("i");
 
@@ -126,18 +125,12 @@ const clickOnForm = function (element) {
     deleteData(element);
   }
 };
-const reset = function () {
-  searchInput.value = "";
-  selectedValue.value = "firstName";
-  creatingATable();
-};
 
 const actions = function (value) {
   searchInput.addEventListener("keyup", creatingATable);
   sortingByIcon.forEach((e) => {
     e.addEventListener("click", creatingATable);
   });
-  restart.addEventListener("click", reset);
 
   [...headForm.children].forEach((m) => {
     m.addEventListener("click", creatingATable);

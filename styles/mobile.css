@@ -9,7 +9,6 @@
   .city,
   .hobby,
   .category,
-  .restart,
   .edit-btn,
   .remove-btn {
     width: 1.4%;
@@ -22,7 +21,7 @@
 
   .search,
   .category {
-    flex: 1 1 20%;
+    flex: 1 1 100%;
     margin: 1%;
   }
   .logo {
@@ -35,11 +34,6 @@
     font-size: 0.8rem !important;
   }
 
-  .restart {
-    order: 0;
-    flex: 1 1 100%;
-    margin: 1%;
-  }
   .fa-solid,
   .fas {
     display: none;
@@ -49,6 +43,11 @@
   .fa-solid,
   .fas {
     display: none;
+  }
+  .category,
+  .search {
+    flex: 1 1 100%;
+    margin: 1%;
   }
 }
 @media screen and (max-width: 400px) {
@@ -62,7 +61,6 @@
   .city,
   .hobby,
   .category,
-  .restart,
   .edit-btn,
   .remove-btn {
     width: 1.4%;
@@ -87,11 +85,7 @@
     order: -2;
     font-size: 0.7rem !important;
   }
-  .restart {
-    order: 0;
-    flex: 1 1 100%;
-    margin: 1%;
-  }
+
   .fa-solid,
   .fas {
     display: none;
