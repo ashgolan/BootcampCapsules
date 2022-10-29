@@ -4,7 +4,6 @@ const studentList = document.querySelector(".students-list");
 const headForm = document.querySelector(".head-form");
 const restart = document.querySelector(".restart");
 const spinner = document.querySelector(".lds-roller");
-
 const students = {
   alldata: [],
   selectedSorting: "id",
@@ -118,9 +117,12 @@ const reset = function () {
   selectedValue.value = "firstName";
   creatingATable();
 };
+
 const actions = function (value) {
   searchInput.addEventListener("keyup", creatingATable);
+
   restart.addEventListener("click", reset);
+
   [...headForm.children].forEach((m) => {
     m.addEventListener("click", creatingATable);
 

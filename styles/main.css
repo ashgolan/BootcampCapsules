@@ -124,6 +124,7 @@ body {
   justify-content: space-between;
   width: 70%;
   padding: 1%;
+  border-bottom: 5px orange solid;
 }
 .restart,
 .category {
@@ -146,8 +147,8 @@ body {
   /* font-family: "Metal Mania", cursive; */
   font-family: "Fira Code", monospace;
   font-size: 1.5rem;
-  height: 50px;
-  line-height: 50px;
+  height: 40px;
+  line-height: 40px;
 }
 .signature {
   font-size: 0.8rem;
