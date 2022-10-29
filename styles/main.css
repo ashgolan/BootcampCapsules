@@ -1,17 +1,118 @@
 @import url("https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@700&family=Metal+Mania&display=swap");
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.lds-roller {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-roller div {
+  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  transform-origin: 40px 40px;
+}
+.lds-roller div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgb(255, 187, 0);
+  margin: -4px 0 0 -4px;
+}
+.lds-roller div:nth-child(1) {
+  animation-delay: -0.036s;
+}
+.lds-roller div:nth-child(1):after {
+  top: 63px;
+  left: 63px;
+}
+.lds-roller div:nth-child(2) {
+  animation-delay: -0.072s;
+}
+.lds-roller div:nth-child(2):after {
+  top: 68px;
+  left: 56px;
+}
+.lds-roller div:nth-child(3) {
+  animation-delay: -0.108s;
+}
+.lds-roller div:nth-child(3):after {
+  top: 71px;
+  left: 48px;
+}
+.lds-roller div:nth-child(4) {
+  animation-delay: -0.144s;
+}
+.lds-roller div:nth-child(4):after {
+  top: 72px;
+  left: 40px;
+}
+.lds-roller div:nth-child(5) {
+  animation-delay: -0.18s;
+}
+.lds-roller div:nth-child(5):after {
+  top: 71px;
+  left: 32px;
+}
+.lds-roller div:nth-child(6) {
+  animation-delay: -0.216s;
+}
+.lds-roller div:nth-child(6):after {
+  top: 68px;
+  left: 24px;
+}
+.lds-roller div:nth-child(7) {
+  animation-delay: -0.252s;
+}
+.lds-roller div:nth-child(7):after {
+  top: 63px;
+  left: 17px;
+}
+.lds-roller div:nth-child(8) {
+  animation-delay: -0.288s;
+}
+.lds-roller div:nth-child(8):after {
+  top: 56px;
+  left: 12px;
+}
+@keyframes lds-roller {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 body {
   background-image: url("/img/background1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  overflow: scroll;
 }
-
+.confirm,
+.cancel {
+  color: white;
+  cursor: pointer;
+}
+.confirm {
+  background-color: rgb(20, 145, 20) !important;
+}
+.cancel {
+  background-color: rgb(110, 106, 48) !important;
+}
+.delete {
+  background-color: rgb(128, 0, 0) !important ;
+  color: white;
+}
 .big-container {
   display: flex;
   flex-direction: column;
@@ -34,6 +135,7 @@ body {
   color: rgb(252, 236, 236);
   font-weight: bold;
   color: gold;
+  cursor: pointer;
 }
 .search {
   padding: 1%;
@@ -41,11 +143,15 @@ body {
 .logo,
 .signature {
   align-items: center;
-  font-family: "Metal Mania", cursive;
-  font-size: 2rem;
+  /* font-family: "Metal Mania", cursive; */
+  font-family: "Fira Code", monospace;
+  font-size: 1.5rem;
+  height: 50px;
+  line-height: 50px;
 }
 .signature {
-  font-size: 1rem;
+  font-size: 0.8rem;
+  color: rgb(82, 87, 9);
 }
 .students-list,
 .students-head {
@@ -87,6 +193,7 @@ body {
   background-color: rgb(255, 180, 40);
   border-radius: 5px;
   border: none;
+  cursor: pointer;
 }
 
 .id {
