@@ -67,49 +67,60 @@ const deleteData = function (e) {
   }
 };
 
+const resetObj = function (siblings) {
+  students.toResetObj = {
+    firstName: siblings[1].value,
+    lastName: siblings[2].value,
+    capsule: siblings[3].value,
+    age: siblings[4].value,
+    city: siblings[5].value,
+    gender: siblings[6].value,
+    hobby: siblings[7].value,
+  };
+};
+
+const addCancelAndConfirmButtons = function (element) {
+  element.target.innerHTML = "Cancel";
+  element.target.classList.add("cancel");
+
+  element.target.nextElementSibling.innerHTML = "Confirm";
+  element.target.nextElementSibling.classList.add("confirm");
+};
+const removeCancelAndConfirmButtons = function (element) {
+  element.target.innerHTML = "Edit";
+  element.target.classList.remove("cancel");
+
+  element.target.nextElementSibling.innerHTML = "Delete";
+  element.target.nextElementSibling.classList.remove("confirm");
+};
+const removeCancelAndConfirmButtonsbyConfirm = function (element) {
+  element.target.previousElementSibling.innerHTML = "Edit";
+  element.target.previousElementSibling.classList.remove("cancel");
+
+  element.target.innerHTML = "Delete";
+  element.target.classList.remove("confirm");
+};
+
 const clickOnForm = function (element) {
-  const parentChildrens = element.target.parentElement.children;
+  const siblings = element.target.parentElement.children;
   if (element.target.innerHTML === "Edit" && !students.editPressed) {
-    students.toResetObj = {
-      firstName: parentChildrens[1].value,
-      lastName: parentChildrens[2].value,
-      capsule: parentChildrens[3].value,
-      age: parentChildrens[4].value,
-      city: parentChildrens[5].value,
-      gender: parentChildrens[6].value,
-      hobby: parentChildrens[7].value,
-    };
-
+    resetObj(siblings);
     students.editPressed = true;
-    element.target.innerHTML = "Cancel";
-    element.target.classList.add("cancel");
+    addCancelAndConfirmButtons(element);
 
-    element.target.nextElementSibling.innerHTML = "Confirm";
-    element.target.nextElementSibling.classList.add("confirm");
-
-    toggleLockInputs(parentChildrens, false);
+    toggleLockInputs(siblings, false);
   } else if (element.target.innerHTML === "Cancel") {
     students.editPressed = false;
-    element.target.innerHTML = "Edit";
-    element.target.classList.remove("cancel");
+    removeCancelAndConfirmButtons(element);
 
-    element.target.nextElementSibling.innerHTML = "Delete";
-    element.target.nextElementSibling.classList.remove("confirm");
-    toggleLockInputs(parentChildrens, true);
-    resetStudentData(parentChildrens, students.toResetObj);
-    //   deleteStudent();
+    toggleLockInputs(siblings, true);
+    resetStudentData(siblings, students.toResetObj);
   } else if (element.target.innerHTML === "Confirm") {
     updateData(element.target.parentElement);
-    element.target.previousElementSibling.innerHTML = "Edit";
-    element.target.previousElementSibling.classList.remove("cancel");
-
-    element.target.innerHTML = "Delete";
-    element.target.classList.remove("confirm");
+    removeCancelAndConfirmButtonsbyConfirm(element);
     students.editPressed = false;
   } else if (element.target.innerHTML === "Delete") {
     deleteData(element);
-
-    //   students.editPressed = false;
   }
 };
 const reset = function () {
