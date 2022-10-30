@@ -5,7 +5,7 @@ const headForm = document.querySelector(".head-form");
 const spinner = document.querySelector(".lds-roller");
 const sortingByIcon = document.querySelectorAll("i");
 
-const students = {
+const stat = {
   alldata: [],
   selectedSorting: "id",
   numericCategores: ["id", "Capsule", "age"],
@@ -44,7 +44,7 @@ const resetStudentData = function (arrOfSiblings, resetobj) {
 const updateData = function (parent) {
   const studentId = parent.id;
   const child = parent.children;
-  for (let student of students.alldata) {
+  for (let student of stat.alldata) {
     if (student.id === studentId) {
       student.firstName = child[1].value;
       student.lastName = child[2].value;
@@ -59,9 +59,9 @@ const updateData = function (parent) {
 const deleteData = function (e) {
   const parent = e.target.parentElement;
 
-  for (let i = 0; i < students.alldata.length; i++) {
-    if (students.alldata[i].id === parent.id) {
-      students.alldata.splice(i, 1);
+  for (let i = 0; i < stat.alldata.length; i++) {
+    if (stat.alldata[i].id === parent.id) {
+      stat.alldata.splice(i, 1);
       parent.remove();
       return;
     }
@@ -69,7 +69,7 @@ const deleteData = function (e) {
 };
 
 const resetObj = function (siblings) {
-  students.toResetObj = {
+  stat.toResetObj = {
     firstName: siblings[1].value,
     lastName: siblings[2].value,
     capsule: siblings[3].value,
@@ -105,22 +105,22 @@ const removeCancelAndConfirmButtonsbyConfirm = function (element) {
 const clickOnForm = function (element) {
   const siblings = element.target.parentElement.children;
   console.log(element.target.textContent);
-  if (element.target.textContent === "Edit" && !students.editPressed) {
+  if (element.target.textContent === "Edit" && !stat.editPressed) {
     resetObj(siblings);
-    students.editPressed = true;
+    stat.editPressed = true;
     addCancelAndConfirmButtons(element);
 
     toggleLockInputs(siblings, false);
   } else if (element.target.textContent === "Cancel") {
-    students.editPressed = false;
+    stat.editPressed = false;
     removeCancelAndConfirmButtons(element);
 
     toggleLockInputs(siblings, true);
-    resetStudentData(siblings, students.toResetObj);
+    resetStudentData(siblings, stat.toResetObj);
   } else if (element.target.textContent === "Confirm") {
     updateData(element.target.parentElement);
     removeCancelAndConfirmButtonsbyConfirm(element);
-    students.editPressed = false;
+    stat.editPressed = false;
   } else if (element.target.textContent === "Delete") {
     deleteData(element);
   }
@@ -135,7 +135,7 @@ const actions = function (value) {
   [...headForm.children].forEach((m) => {
     m.addEventListener("click", creatingATable);
 
-    students.form.forEach((allforms) => {
+    stat.form.forEach((allforms) => {
       allforms.forEach((form) => {
         form.addEventListener("click", clickOnForm);
       });
@@ -159,8 +159,8 @@ const getStudents = async function () {
     );
     totalStudentsDesc.push(dataFromId);
   }
-  students.alldata = await Promise.all(totalStudentsDesc);
-  students.isLoading = true;
+  stat.alldata = await Promise.all(totalStudentsDesc);
+  stat.isLoading = true;
   creatingATable();
   actions(searchInput.value);
 };
@@ -195,15 +195,15 @@ const drawAStudentData = function (student) {
 };
 
 const sortNumbers = function () {
-  return students.alldata.sort(
-    (a, b) => a[students.selectedSorting] - b[students.selectedSorting]
+  return stat.alldata.sort(
+    (a, b) => a[stat.selectedSorting] - b[stat.selectedSorting]
   );
 };
 
 const sortStrings = function () {
-  students.alldata.sort((a, b) => {
-    const nameA = a[students.selectedSorting];
-    const nameB = b[students.selectedSorting];
+  stat.alldata.sort((a, b) => {
+    const nameA = a[stat.selectedSorting];
+    const nameB = b[stat.selectedSorting];
     if (nameA < nameB) {
       return -1;
     }
@@ -217,30 +217,30 @@ const hideSpinner = function (isLoading) {
   if (isLoading) {
     spinner.style.display = "none";
   } else {
-    students.isLoading = false;
+    stat.isLoading = false;
   }
 };
 const creatingATable = function (e) {
-  hideSpinner(students.isLoading);
-  students.form = [];
+  hideSpinner(stat.isLoading);
+  stat.form = [];
   if (e) {
     if (e.target.textContent !== "")
-      students.selectedSorting = e.target.textContent;
-    else students.selectedSorting = e.target.parentElement.textContent;
+      stat.selectedSorting = e.target.textContent;
+    else stat.selectedSorting = e.target.parentElement.textContent;
   }
-  if (students.numericCategores.includes(students.selectedSorting)) {
+  if (stat.numericCategores.includes(stat.selectedSorting)) {
     sortNumbers();
   } else {
     sortStrings();
   }
   studentList.innerHTML = "";
 
-  const arrayfilterd = filterBy(searchInput.value, students.alldata);
+  const arrayfilterd = filterBy(searchInput.value, stat.alldata);
   arrayfilterd.forEach((student) => {
     drawAStudentData(student);
   });
 
-  students.form.push(document.querySelectorAll(".form"));
+  stat.form.push(document.querySelectorAll(".form"));
   actions();
 };
 
